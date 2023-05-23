@@ -1,12 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Footer from '../Home/Shared/Footer';
+import Footer from '../Home/Shared/Footer/Footer';
+
 
 const Main = () => {
     return (
         <div>
 
-          <Outlet></Outlet>  
+         <div className="min-h-[calc(100vh-298px)]"><Outlet></Outlet></div>  
           <Footer></Footer>
         </div>
     );
