@@ -10,7 +10,7 @@ const ChefRecommend = () => {
     useEffect(()=>{
         fetch('menu.json')
         .then (res => res.json())
-        .then (data =>{            
+        .then (data =>{                  
             // console.log(data)
             setMenu(data)
         })
@@ -23,7 +23,7 @@ const ChefRecommend = () => {
             subHeading={'Should I Try'}            
             ></SectionTitle>
 
-            <div className='grid lg:grid-cols-3 '>
+            <div className='grid lg:grid-cols-3 gap-4 mb-8'>
                 {
                     menu.map((chefCard)=>
                         <ChefRecommendCard

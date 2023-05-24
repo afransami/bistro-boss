@@ -12,7 +12,7 @@ const ChefRecommendCard = ({chefCard}) => {
           className="rounded-xl"
         />
       </figure>
-      <div className="card-body items-center text-center">
+      <div className="card-body bg-gray-100 items-center text-center">
         <h2 className="card-title">{name}</h2>
         <p>{recipe}</p>
         <div className='mt-5'><button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 text-yellow-500">Order Now</button></div>
