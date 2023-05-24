@@ -7,11 +7,17 @@ import PopularMenu from '../PopularMenu/PopularMenu';
 import Featured from '../Featured/Featured';
 import Testimonials from '../Testimonials/Testimonials';
 import ChefRecommend from '../ChefRecommed/ChefRecommend';
+import { Helmet} from "react-helmet-async";
 
 
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>
+                Bistro | Home
+                </title>
+            </Helmet>            
             <Navbar></Navbar>
             <Banner></Banner>
             <Category></Category>
@@ -19,7 +25,7 @@ const Home = () => {
             <PopularMenu></PopularMenu>
             <ChefRecommend></ChefRecommend>
             <Featured></Featured>
-            <Testimonials></Testimonials>
+            <Testimonials></Testimonials>            
         </div>
     );
 };
