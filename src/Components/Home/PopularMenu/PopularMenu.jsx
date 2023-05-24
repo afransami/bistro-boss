@@ -27,7 +27,7 @@ const PopularMenu = () => {
                     ></MenuItems>)
                 }
             </div>
-            <div className='text-center mt-5'><button className="btn btn-outline border-0 border-b-4 mt-4 ">View Full Menu</button></div>
+            <div className='text-center mt-5'><button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 text-yellow-500">View Full Menu</button></div>
 
             <div className='bg-black my-10 py-20 text-white text-center text-5xl rounded-xl'>
                 <p>Call Us: +88 0192345678910</p>
