@@ -5,6 +5,7 @@ import menuImg from "../../../assets/menu/banner3.jpg";
 import useMenu from "../../../Hooks/UseMenu";
 import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 import MenuCategory from "./MenuCategory";
+import PopularMenu from "../PopularMenu/PopularMenu";
 
 const Menu = () => {
     const [menu]= useMenu();
@@ -17,17 +18,22 @@ const Menu = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro | Menu</title>
+        <title>Bistro Boss | Menu</title>
       </Helmet>
-      <Cover img={menuImg} title={"Our Menu"}></Cover>
+
+      <Cover img={menuImg} title={"Our Menu"}></Cover>      
+      {/* <PopularMenu></PopularMenu> */}
       {/* main cover */}
-      <SectionTitle subHeading={'Dont Miss'} heading={'Todays Offer'}      
-      ></SectionTitle>
+      <SectionTitle subHeading={"Don't Miss"} heading={"Today's Offer"}></SectionTitle>
       {/* offered manu items */}
       <MenuCategory items={offered}></MenuCategory>
       {/* desserts menu items */}
-      <MenuCategory items={desserts} title={'Dessert'}
-      ></MenuCategory>
+      <MenuCategory items={desserts} title={'Dessert'}></MenuCategory>
+      <MenuCategory items={soup} title={'soup'}></MenuCategory>
+      <MenuCategory items={salad} title={'salad'}></MenuCategory>
+      <MenuCategory items={drinks} title={'drinks'}></MenuCategory>
+      <MenuCategory items={pizza} title={'pizza'}></MenuCategory>
+      
     </div>
   );
 };
