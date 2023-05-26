@@ -8,12 +8,13 @@ const Cover = ({ img, title }) => {
       bgImage={img}
       bgImageAlt="the menu"
       strength={-200}
+      className="w-full bg-cover h-auto"
     >
-      <div className="hero h-[600px]">
-        <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero lg:h-[600px]">
+        {/* <div className="hero-overlay bg-opacity-60"></div> */}
         <div className="hero-content text-center text-neutral-content bg-black bg-opacity-30 px-30 rounded-xl">
-          <div className="max-w-md">
-            <h1 className="my-5 text-5xl font-bold uppercase">{title}</h1>
+          <div className="max-w-md mt-10">
+            <h1 className="my-5 lg:text-5xl font-bold uppercase">{title}</h1>
             <p className="mb-5">
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae

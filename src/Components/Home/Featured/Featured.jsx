@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionTitle from '../Shared/SectionTitle/SectionTitle';
 import featuredimg from '../../../assets/home/featured.jpg'
-import './Featured.css';
+// import './Featured.css';
 
 
 const Featured = () => {
@@ -12,18 +12,22 @@ const Featured = () => {
             {'Check it out'}
             heading={'Popular Items'}
             ></SectionTitle>
-            <div className='grid lg:grid-cols-2 items-center  mx-36 mb-10 '>
-                <div className='pb-20'>
-                    <img className=' rounded-xl' src={featuredimg} alt="" />
-                    </div>
-                <div className='flex-none items-center text-white rounded-lg ml-10 '>
-                <p className='text-xl'>Marh 20, 2023</p>
-                <h3 className='text-xl'>WHERE CAN I GET SOME?</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non voluptas aspernatur esse maxime reiciendis magni earum officiis molestias tenetur molestiae aut quod fugiat, eveniet dignissimos et corporis a eligendi alias dolorem repellendus voluptates?</p>
-                <div className='mt-5'><button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 text-yellow-500">Read More</button></div>
-                </div>
 
-            </div>
+<div className="relative">
+      <img src={featuredimg} alt="Image" className="rounded-xl w-full lg:h-[600px] h-auto" />
+      <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">        
+        <div className="w-full px-20 items-center h-3/4 gap-4 justify-center flex p-10 overflow-hidden">
+        <img className="rounded-xl lg:w-1/2" src={featuredimg} alt="" />
+          <p className="text-white lg:w-1/2 text-lg font-bold">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+            fugit quae officia nemo ipsam, omnis harum ea reiciendis, excepturi
+            est officiis accusamus minima quis fugiat, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus architecto quaerat facilis, quas inventore dolor perferendis, nisi, repudiandae qui aspernatur quo! Officia cum hic quas qui! Ab quisquam minima delectus?
+          </p>
+        </div>
+      </div>
+    </div>
+
+
         </div>
     );
 };
