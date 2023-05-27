@@ -1,36 +1,56 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import loginImg from "../../../../assets/others/authentication1.png";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { Helmet } from "react-helmet";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import './../Login/Login.css';
-
+import "./../Login/Login.css";
+import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const SignUp = () => {
+    const [error, setError]= useState(" ")
+  const Navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const {createUser} = useContext(AuthContext)
+  const { createUser, updateUserProfile } = useContext(AuthContext);
 
   const onSubmit = (data) => {
     console.log(data);
-    createUser(data.email, data.password)
-    .then (result =>{
-        const loggedUser = result.user
-        console.log(loggedUser);
-    })
+
+    createUser(data.email, data.name, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      setError("");      
+
+      updateUserProfile(data.name, data.photURL)
+        .then(() => {
+          console.log("user profile updated");          
+          reset();
+          Swal.fire({
+            icon: "success",
+            title: "success.",
+            text: "You have successfully Sign Up!",
+            footer: '<a href="">Why do I have this issue?</a>',
+          });
+        })
+        .catch((error) => console.error(error.message));
+        setError(error.message)
+
+      Navigate(from, { replace: true });
+    });
   };
-
-
 
   return (
     <div className="login-bg hero min-h-screen bg-base-200">
-        <Helmet>
+      <Helmet>
         <title>Bistro Boss | Sign Up</title>
       </Helmet>
       <div className="hero-content grid lg:grid-cols-2 gap-20">
@@ -51,10 +71,26 @@ const SignUp = () => {
                   type="text"
                   placeholder="name"
                   {...register("name")}
-                  {...register("name", { required: true })}   
+                  {...register("name", { required: true })}
                   className="input input-bordered"
                 />
-                {errors.name && <span className="text-red-500">This field is required</span>}
+                {errors.name && (
+                  <span className="text-red-500">This field is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo Url</span>
+                </label>
+                <input
+                  type="url"
+                  placeholder="Photo url"
+                  {...register("photoUrl", { required: true })}
+                  className="input input-bordered"
+                />
+                {errors.photoUrl && (
+                  <span className="text-red-500">This field is required</span>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -65,10 +101,11 @@ const SignUp = () => {
                   placeholder="email"
                   {...register("email")}
                   {...register("email", { required: true })}
-                  {...register("email", { required: true })}            
                   className="input input-bordered"
                 />
-                {errors.email && <span className="text-red-500">This field is required</span>}
+                {errors.email && (
+                  <span className="text-red-500">This field is required</span>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -77,12 +114,28 @@ const SignUp = () => {
                 <input
                   type="password"
                   placeholder="password"
-                  {...register("password", { required: true, minLength:6, pattern: /[A-Za-z]+/i})}    
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    pattern: /[A-Za-z]+/i,
+                  })}
                   className="input input-bordered"
                 />
-                {errors.password?.type === 'required' && <p className="text-red-500" role="alert">password is required</p>}
-                {errors.password?.type === 'minLength' && <p className="text-red-500" role="alert">password must be 6 characters</p>}
-                {errors.password?.type === 'pattern' && <p className="text-red-500" role="alert">password must be at least 1 uppercase or letter case</p>}
+                {errors.password?.type === "required" && (
+                  <p className="text-red-500" role="alert">
+                    password is required
+                  </p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-red-500" role="alert">
+                    password must be 6 characters
+                  </p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="text-red-500" role="alert">
+                    password must be at least 1 uppercase or letter case
+                  </p>
+                )}
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
@@ -101,7 +154,7 @@ const SignUp = () => {
                 <p className="text-center mt-5 font-semibold">
                   Already have an account? Please
                   <Link className="text-green-600 font-bold" to="/login">
-                   <span> Login</span>
+                    <span> Login</span>
                   </Link>
                 </p>
               </div>

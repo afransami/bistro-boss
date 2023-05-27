@@ -29,7 +29,8 @@ const Navbar = () => {
       <li><Link to='/secret'>Secret</Link></li>           
       {
         user ? 
-        <>
+        <>        
+        <span className="flex justify-center items-center mr-4">{user?.displayName}</span>
         <button onClick={handleLogOut} className="btn btn-active btn-ghost">Log out</button> </> : <>
         <li><Link to='/login'>Login</Link></li>
         </>
