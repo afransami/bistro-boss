@@ -6,6 +6,7 @@ import soupImg from "../../../assets/menu/soup-bg.jpg";
 import pizzaImg from "../../../assets/menu/pizza-bg.jpg";
 import saladImg from "../../../assets/menu/salad-bg.jpg";
 import dessertsImg from "../../../assets/menu/dessert-bg.jpeg";
+import offeredImg from "../../../assets/reservation/category-pizza.jpg";
 import useMenu from "../../../Hooks/UseMenu";
 import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 import MenuCategory from "./MenuCategory";
@@ -32,7 +33,7 @@ const Menu = () => {
       <SectionTitle subHeading={"Don't Miss"} heading={"Today's Offer"}></SectionTitle>
          
       {/* offered manu items */}
-      <MenuCategory items={offered} title={'offered'}></MenuCategory>
+      <MenuCategory items={offered} title={'offered'} img={offeredImg}></MenuCategory>
       {/* desserts menu items */}
       <MenuCategory items={desserts} title={'dessert'} img={dessertsImg}></MenuCategory>
       <MenuCategory items={soup} title={'soup'} img={soupImg}></MenuCategory>
