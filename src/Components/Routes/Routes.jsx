@@ -8,6 +8,7 @@ import Main from '../Layout/Main';
 import Home from '../Home/Home/Home';
 import Menu from '../Home/Pages/Menu';
 import OrderFood from '../Home/Pages/OrderFood';
+import ContactUs from '../Home/Pages/ContactUs/ContactUs';
 
   export const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ import OrderFood from '../Home/Pages/OrderFood';
         {
             path:'/',
             element: <Home></Home>
+        },
+        {
+            path:'contactUs',
+            element: <ContactUs></ContactUs>
         },
         {
             path:'menu',
