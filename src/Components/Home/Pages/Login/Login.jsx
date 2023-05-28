@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import loginImg from "../../../../assets/others/authentication.gif";
-import { Form, Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import './Login.css';
 
@@ -16,7 +16,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
-  const { singIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const navigate = useNavigate()
   const location= useLocation()
   const from= location.state?.from?.pathname || '/';
@@ -33,7 +33,9 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
-    singIn(email, password).then((result) => {
+
+    signIn(email, password)
+    .then((result) => {
       const user = result.user;
       console.log(user);
       Swal.fire({
@@ -51,10 +53,10 @@ const Login = () => {
     const user_captcha_value = e.target.value;
     if (validateCaptcha(user_captcha_value)) {
       setDisabled(false);
-    } else {
+    } 
+    else {
       setDisabled(true);
     }
-    console.log(user_captcha_value);
   };
 
 
@@ -71,7 +73,7 @@ const Login = () => {
         </div>
         <div className="card flex-shrink-0 shadow-2xl">
           <h1 className="text-4xl p-5 font-bold">Login!</h1>
-          <Form onSubmit={handleLogin}>
+          <form onSubmit={handleLogin}>
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -118,7 +120,8 @@ const Login = () => {
                 <input
                   className="btn bg-yellow-600 border-0"
                   type="submit"
-                  disabled={disabled}
+                  // TODO: DISABLED BUTTON WILL ACTIVETED
+                  disabled={false}
                   value="Login"
                 />
 
@@ -142,7 +145,7 @@ const Login = () => {
                 </button>
               </div>
             </div>
-          </Form>
+          </form>
         </div>
       </div>
     </div>

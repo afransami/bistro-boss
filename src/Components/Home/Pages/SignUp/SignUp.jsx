@@ -9,9 +9,10 @@ import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 
 const SignUp = () => {
-    const [error, setError]= useState(" ")
+  const [error, setError]= useState(" ")
   const navigate = useNavigate();
   const location = useLocation();
+
   const from = location.state?.from?.pathname || "/";
   const {
     register,
@@ -25,7 +26,7 @@ const SignUp = () => {
   const onSubmit = (data) => {
     console.log(data);
 
-    createUser(data.email, data.name, data.password).then((result) => {
+    createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
       setError("");      

@@ -29,7 +29,7 @@ const OrderFood = () => {
       <Cover img={orderCover} title={"order food"}></Cover>
     
 
-      <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+      <Tabs className={`text-center my-10`} selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
         <TabList>
           <Tab>Salad</Tab>
           <Tab>Pizza</Tab>
