@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet";
 
 const SignUp = () => {
     const [error, setError]= useState(" ")
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const {
@@ -44,7 +44,7 @@ const SignUp = () => {
         .catch((error) => console.error(error.message));
         setError(error.message)
 
-      Navigate(from, { replace: true });
+      navigate(from, { replace: true });
     });
   };
 

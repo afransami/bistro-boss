@@ -17,7 +17,7 @@ import Swal from "sweetalert2";
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const { singIn } = useContext(AuthContext);
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
   const location= useLocation()
   const from= location.state?.from?.pathname || '/';
 
@@ -42,7 +42,7 @@ const Login = () => {
         text: 'You have successfully logged in!',
         footer: '<a href="">Why do I have this issue?</a>'
       })
-      Navigate(from, {replace:true})
+      navigate(from, {replace:true})
     });
   };
 
