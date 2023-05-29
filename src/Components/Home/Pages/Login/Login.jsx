@@ -119,9 +119,8 @@ const Login = () => {
               <div className="form-control mt-6">
                 <input
                   className="btn bg-yellow-600 border-0"
-                  type="submit"
-                  // TODO: DISABLED BUTTON WILL ACTIVETED
-                  disabled={false}
+                  type="submit"                  
+                  disabled={disabled}
                   value="Login"
                 />
 

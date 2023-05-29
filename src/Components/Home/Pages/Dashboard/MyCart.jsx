@@ -8,7 +8,7 @@ const MyCart = () => {
   const [cart, refetch] = useCart();
 //   how does reduce work is need to be confirm out side of project
   const total = cart.reduce((sum, item) => item.price + sum, 0);
-  const handleDetele=(item)=>{
+  const handleDelete=(item)=>{
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -43,14 +43,14 @@ const MyCart = () => {
       <Helmet>
         <title>Bistro Boss | My Cart</title>
       </Helmet>
-      <div className="flex justify-between items-center gap-4 my-10 mx-10">
+      <div className="flex justify-between items-center gap-4 my-10 mx-10 ">
         <h1 className="text-3xl font-semibold">Total Orders: {cart.length}</h1>
         <h1 className="text-3xl font-semibold">Total Price: $ {total}</h1>
         <button className="btn btn-sm bg-yellow-600 border-0">Pay</button>
       </div>
       {/* table */}
       <div className="overflow-x-auto w-full">
-        <table className="table w-full ">
+        <table className="table w-full">
           {/* head */}
           <thead>
             <tr>
@@ -76,7 +76,7 @@ const MyCart = () => {
                 <td>{item.name}</td>
                 <td className="text-end">$ {item.price}</td>
                 <td className="">
-                  <button onClick={()=>handleDetele(item)} className="btn btn-ghost bg-yellow-600 text-white btn-xs w-12 h-12 text-2xl">
+                  <button onClick={()=>handleDelete(item)} className="btn btn-ghost bg-yellow-600 text-white btn-xs w-12 h-12 text-2xl">
                     <FaTrashAlt></FaTrashAlt>
                   </button>                  
                 </td>

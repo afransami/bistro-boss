@@ -24,7 +24,6 @@ const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
 
   const onSubmit = (data) => {
-    console.log(data);
 
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
@@ -33,14 +32,28 @@ const SignUp = () => {
 
       updateUserProfile(data.name, data.photURL)
         .then(() => {
-          console.log("user profile updated");          
-          reset();
-          Swal.fire({
-            icon: "success",
-            title: "success.",
-            text: "You have successfully Sign Up!",
-            footer: '<a href="">Why do I have this issue?</a>',
-          });
+          const saveUser= {name:data.name, email:data.email}
+          fetch ('http://localhost:5000/users',{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(saveUser)
+          })
+          .then (res=> res.json())
+          .then (data => {            
+            if (data.insertedId) {
+              reset(); 
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "User created successfully",
+                showConfirmButton: false,
+                timer: 1500
+              })
+              navigate(from);
+            }
+          })                   
         })
         .catch((error) => console.error(error.message));
         setError(error.message)
