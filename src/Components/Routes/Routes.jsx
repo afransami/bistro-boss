@@ -55,10 +55,11 @@ import MyCart from '../Home/Pages/Dashboard/MyCart';
       path: 'dashboard',
       element:<Dashboard></Dashboard>,
       children: [
-        {
-        path:'/',
+      {
+        path:'mycart',
         element: <MyCart></MyCart>
-      }]
+      }
+    ]
     }
   ]);
 
