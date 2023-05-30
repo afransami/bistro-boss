@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import loginImg from "../../../../assets/others/authentication1.png";
 import { Form, Link, useLocation, useNavigate } from "react-router-dom";
-import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import "./../Login/Login.css";
@@ -22,22 +21,7 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const { createUser, updateUserProfile, googleSignIn } = useContext(AuthContext);
-  
-  
-  // const handleGoogleLogin = () => {
-  //   googleSignIn().then((result) => {
-  //     const loggedInUser = result.user;
-  //     console.log(loggedInUser);
-  //     navigate(from, { replace: true });
-  //     Swal.fire({
-  //       icon: "success",
-  //       title: "success.",
-  //       text: "You have successfully logged in!",
-  //     });
-  //   });
-  // };
-
+  const { createUser, updateUserProfile } = useContext(AuthContext);
 
   const onSubmit = (data) => {
     createUser(data.email, data.password).then((result) => {
@@ -66,13 +50,12 @@ const SignUp = () => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                navigate(from);
+                navigate(from, { replace: true });
               }
             });
         })
         .catch((error) => console.error(error.message));
       setError(error.message);
-
       navigate(from, { replace: true });
     });
   };
@@ -188,18 +171,6 @@ const SignUp = () => {
                 </p>
               </div>
               <SocialLogin></SocialLogin>
-              {/* <div className="divider">Social Media Sign Up</div>
-              <div className="text-center flex justify-center gap-8">
-                <button onClick={handleGoogleLogin} className="btn btn-outline btn-circle text-3xl text-yellow-600">
-                  <FaGoogle></FaGoogle>
-                </button>
-                <button className="btn btn-outline btn-circle text-3xl text-yellow-600">
-                  <FaFacebook></FaFacebook>
-                </button>
-                <button className="btn btn-outline btn-circle text-3xl text-yellow-600">
-                  <FaGithub></FaGithub>
-                </button>
-              </div> */}
             </div>
           </Form>
         </div>

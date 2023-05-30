@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import loginImg from "../../../../assets/others/authentication.gif";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import "./Login.css";
 
 import {
@@ -16,7 +15,7 @@ import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
-  const { signIn, googleSignIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -41,19 +40,6 @@ const Login = () => {
         text: "You have successfully logged in!",
       });
       navigate(from, { replace: true });
-    });
-  };
-
-  const handleGoogleLogin = () => {
-    googleSignIn().then((result) => {
-      const loggedInUser = result.user;
-      console.log(loggedInUser);
-      navigate(from, { replace: true });
-      Swal.fire({
-        icon: "success",
-        title: "success.",
-        text: "You have successfully logged in!",
-      });
     });
   };
 
