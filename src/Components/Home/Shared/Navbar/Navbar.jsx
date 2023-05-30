@@ -2,12 +2,12 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../../../Hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [cart]= useCart()
+  const [cart] = useCart();
 
   const handleLogOut = () => {
     logOut()
@@ -17,7 +17,7 @@ const Navbar = () => {
       icon: "error",
       title: "Oops...",
       text: "You have successfully log out!",
-      footer: '<a href="">Why do I have this issue?</a>'
+      footer: '<a href="">Why do I have this issue?</a>',
     });
   };
 
@@ -41,7 +41,7 @@ const Navbar = () => {
       <li>
         <Link to="/dashboard/mycart">
           <button className="flex gap-1">
-          <FaShoppingCart></FaShoppingCart>
+            <FaShoppingCart></FaShoppingCart>
             <div className="badge badge-secondary">+ {cart?.length || 0}</div>
           </button>
         </Link>
@@ -51,9 +51,11 @@ const Navbar = () => {
           <span className="flex justify-center items-center mr-4">
             {user?.displayName}
           </span>
-          <span className="flex justify-center items-center"><button onClick={handleLogOut} className="btn btn-active btn-ghost">
-            Log out
-          </button>{" "}</span>
+          <span className="flex justify-center items-center">
+            <button onClick={handleLogOut} className="btn btn-active btn-ghost">
+              Log out
+            </button>{" "}
+          </span>
         </>
       ) : (
         <>
@@ -92,7 +94,12 @@ const Navbar = () => {
             {NavOptions}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">Bistro Boss</a>
+        <div className="uppercase font-extrabold tracking-widest mx-auto text-center">
+          <Link>
+            <p className="scale-110 text-xl font-serif font-">Bistro Boss </p>
+            <p className="scale-150 font-extralight font-serif">Restuarent </p>
+          </Link>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{NavOptions}</ul>

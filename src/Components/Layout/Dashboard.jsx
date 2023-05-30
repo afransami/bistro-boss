@@ -14,8 +14,6 @@ import { MdEmail, MdShoppingBag } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-
-
   return (
     <div className="drawer drawer-mobile">
       <Helmet>
@@ -38,31 +36,31 @@ const Dashboard = () => {
           {/* <!-- Sidebar content here --> */}
 
           <li>
-            <NavLink to= '/dashboard/home' className="uppercase">
+            <NavLink to="/dashboard/home" className="uppercase">
               <FaHome></FaHome> User Home
             </NavLink>
           </li>
           <li>
-            <NavLink to= '/dashboard/resevation' className="uppercase">
+            <NavLink to="/dashboard/resevation" className="uppercase">
               <FaCalendarAlt></FaCalendarAlt>reservation
             </NavLink>
           </li>
           <li>
-            <NavLink to= '/dashboard/history' className="uppercase">
+            <NavLink to="/dashboard/history" className="uppercase">
               <FaWallet></FaWallet> payment history
             </NavLink>
           </li>
           <li>
-            <NavLink to= '/dashboard/mycart' className="uppercase">
+            <NavLink to="/dashboard/mycart" className="uppercase">
               <FaShoppingCart></FaShoppingCart> my cart
             </NavLink>
           </li>
           <li>
-            <NavLink to= '/dashboard/addreview' className="uppercase">
+            <NavLink to="/dashboard/addreview" className="uppercase">
               <FaRegCommentAlt></FaRegCommentAlt> add review
             </NavLink>
           </li>
-          <div className="divider"></div>
+          <p className="divider"></p>
           <li>
             <NavLink to="/" className="uppercase">
               <FaHome></FaHome> Home

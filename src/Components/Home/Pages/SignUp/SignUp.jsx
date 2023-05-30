@@ -7,9 +7,10 @@ import { AuthContext } from "../../../../Provider/AuthProvider";
 import "./../Login/Login.css";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
-  const [error, setError]= useState(" ")
+  const [error, setError] = useState(" ");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -21,42 +22,56 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, googleSignIn } = useContext(AuthContext);
+  
+  
+  // const handleGoogleLogin = () => {
+  //   googleSignIn().then((result) => {
+  //     const loggedInUser = result.user;
+  //     console.log(loggedInUser);
+  //     navigate(from, { replace: true });
+  //     Swal.fire({
+  //       icon: "success",
+  //       title: "success.",
+  //       text: "You have successfully logged in!",
+  //     });
+  //   });
+  // };
+
 
   const onSubmit = (data) => {
-
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
-      setError("");      
+      setError("");
 
       updateUserProfile(data.name, data.photURL)
         .then(() => {
-          const saveUser= {name:data.name, email:data.email}
-          fetch ('http://localhost:5000/users',{
-            method: 'POST',
+          const saveUser = { name: data.name, email: data.email };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json'
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify(saveUser)
+            body: JSON.stringify(saveUser),
           })
-          .then (res=> res.json())
-          .then (data => {            
-            if (data.insertedId) {
-              reset(); 
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "User created successfully",
-                showConfirmButton: false,
-                timer: 1500
-              })
-              navigate(from);
-            }
-          })                   
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "User created successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate(from);
+              }
+            });
         })
         .catch((error) => console.error(error.message));
-        setError(error.message)
+      setError(error.message);
 
       navigate(from, { replace: true });
     });
@@ -172,9 +187,10 @@ const SignUp = () => {
                   </Link>
                 </p>
               </div>
-              <div className="divider">Social Media Sign Up</div>
+              <SocialLogin></SocialLogin>
+              {/* <div className="divider">Social Media Sign Up</div>
               <div className="text-center flex justify-center gap-8">
-                <button className="btn btn-outline btn-circle text-3xl text-yellow-600">
+                <button onClick={handleGoogleLogin} className="btn btn-outline btn-circle text-3xl text-yellow-600">
                   <FaGoogle></FaGoogle>
                 </button>
                 <button className="btn btn-outline btn-circle text-3xl text-yellow-600">
@@ -183,7 +199,7 @@ const SignUp = () => {
                 <button className="btn btn-outline btn-circle text-3xl text-yellow-600">
                   <FaGithub></FaGithub>
                 </button>
-              </div>
+              </div> */}
             </div>
           </Form>
         </div>

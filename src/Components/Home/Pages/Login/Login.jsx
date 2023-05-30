@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import loginImg from "../../../../assets/others/authentication.gif";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
-import './Login.css';
+import "./Login.css";
 
 import {
   loadCaptchaEnginge,
@@ -12,20 +12,18 @@ import {
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
-
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
-  const { signIn } = useContext(AuthContext);
-  const navigate = useNavigate()
-  const location= useLocation()
-  const from= location.state?.from?.pathname || '/';
-
+  const { signIn, googleSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
-
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -34,31 +32,39 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
 
-    signIn(email, password)
-    .then((result) => {
+    signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
       Swal.fire({
-        icon: 'success',
-        title: 'success.',
-        text: 'You have successfully logged in!',
-        footer: '<a href="">Why do I have this issue?</a>'
-      })
-      navigate(from, {replace:true})
+        icon: "success",
+        title: "success.",
+        text: "You have successfully logged in!",
+      });
+      navigate(from, { replace: true });
     });
   };
 
+  const handleGoogleLogin = () => {
+    googleSignIn().then((result) => {
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+      navigate(from, { replace: true });
+      Swal.fire({
+        icon: "success",
+        title: "success.",
+        text: "You have successfully logged in!",
+      });
+    });
+  };
 
   const handleValidateCaptcha = (e) => {
     const user_captcha_value = e.target.value;
     if (validateCaptcha(user_captcha_value)) {
       setDisabled(false);
-    } 
-    else {
+    } else {
       setDisabled(true);
     }
   };
-
 
   return (
     <div className="login-bg hero min-h-screen bg-base-200">
@@ -109,17 +115,16 @@ const Login = () => {
                 <input
                   type="text"
                   name="captcha"
-                  placeholder="Type Captcha"                
+                  placeholder="Type Captcha"
                   className="input input-bordered"
                   onBlur={handleValidateCaptcha}
                 />
-            
               </div>
               <p className="font-bold text-red-500 text-xl"></p>
               <div className="form-control mt-6">
                 <input
                   className="btn bg-yellow-600 border-0"
-                  type="submit"                  
+                  type="submit"
                   disabled={disabled}
                   value="Login"
                 />
@@ -131,18 +136,7 @@ const Login = () => {
                   </Link>
                 </p>
               </div>
-              <div className="divider">Social Media Login</div>
-              <div className="text-center flex justify-center gap-8">
-                <button className="btn btn-outline btn-circle text-3xl text-yellow-600">
-                  <FaGoogle></FaGoogle>
-                </button>
-                <button className="btn btn-outline btn-circle text-3xl text-yellow-600">
-                  <FaFacebook></FaFacebook>
-                </button>
-                <button className="btn btn-outline btn-circle text-3xl text-yellow-600">
-                  <FaGithub></FaGithub>
-                </button>
-              </div>
+              <SocialLogin></SocialLogin>             
             </div>
           </form>
         </div>
