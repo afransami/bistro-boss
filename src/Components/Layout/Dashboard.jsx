@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 import {
   FaBars,
@@ -8,12 +8,16 @@ import {
   FaHome,
   FaRegCommentAlt,
   FaShoppingCart,
+  FaUtensils,
   FaWallet,
 } from "react-icons/fa";
 import { MdEmail, MdShoppingBag } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
+import useCart from "../../Hooks/useCart";
 
 const Dashboard = () => {
+  const [cart] = useCart();
+  const isAdmin = true;
   return (
     <div className="drawer drawer-mobile">
       <Helmet>
@@ -35,31 +39,64 @@ const Dashboard = () => {
         <ul className="menu p-4 w-80 bg-yellow-600">
           {/* <!-- Sidebar content here --> */}
 
-          <li>
-            <NavLink to="/dashboard/home" className="uppercase">
-              <FaHome></FaHome> User Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/resevation" className="uppercase">
-              <FaCalendarAlt></FaCalendarAlt>reservation
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/history" className="uppercase">
-              <FaWallet></FaWallet> payment history
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/mycart" className="uppercase">
-              <FaShoppingCart></FaShoppingCart> my cart
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/addreview" className="uppercase">
-              <FaRegCommentAlt></FaRegCommentAlt> add review
-            </NavLink>
-          </li>
+          {isAdmin ? (
+            <>
+              <li>
+                <NavLink to="/dashboard/home" className="uppercase">
+                  <FaHome></FaHome> Admn Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/resevation" className="uppercase">
+                  <FaUtensils></FaUtensils>Add Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/history" className="uppercase">
+                  <FaWallet></FaWallet> Managa Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/bookings" className="uppercase">
+                  <FaWallet></FaWallet> Bookings
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/allusers" className="uppercase">
+                  <FaWallet></FaWallet> All users
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/dashboard/home" className="uppercase">
+                  <FaHome></FaHome> User Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/resevation" className="uppercase">
+                  <FaCalendarAlt></FaCalendarAlt>reservation
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/history" className="uppercase">
+                  <FaWallet></FaWallet> payment history
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/mycart" className="uppercase">
+                  <FaShoppingCart></FaShoppingCart> my cart
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/addreview" className="uppercase">
+                  <FaRegCommentAlt></FaRegCommentAlt> add review
+                </NavLink>
+              </li>
+            </>
+          )}
+
           <p className="divider"></p>
           <li>
             <NavLink to="/" className="uppercase">
