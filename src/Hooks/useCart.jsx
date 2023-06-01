@@ -11,7 +11,7 @@ const useCart = () => {
       const response = await fetch(
         `http://localhost:5000/carts?email=${user?.email}`
       );
-      return response.json();
+      return response.json();      
     },
   });
   return [cart, refetch];

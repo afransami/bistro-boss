@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
 import loginImg from "../../../../assets/others/authentication1.png";
-import { Form, Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import "./../Login/Login.css";
@@ -10,10 +10,6 @@ import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const [error, setError] = useState(" ");
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -22,6 +18,10 @@ const SignUp = () => {
   } = useForm();
 
   const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
+  // const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
     createUser(data.email, data.password).then((result) => {
@@ -50,13 +50,14 @@ const SignUp = () => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                navigate(from, { replace: true });
+                // navigate(from, { replace: true });
+                navigate('/');
               }
             });
         })
         .catch((error) => console.error(error.message));
       setError(error.message);
-      navigate(from, { replace: true });
+      // navigate(from, { replace: true });
     });
   };
 
@@ -73,7 +74,7 @@ const SignUp = () => {
         </div>
         <div className="card flex-shrink-0 shadow-2xl">
           <h1 className="text-4xl p-5 font-bold">Sign Up!</h1>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -172,7 +173,7 @@ const SignUp = () => {
               </div>
               <SocialLogin></SocialLogin>
             </div>
-          </Form>
+          </form>
         </div>
       </div>
     </div>

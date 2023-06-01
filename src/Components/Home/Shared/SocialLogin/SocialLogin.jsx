@@ -6,11 +6,11 @@ import { AuthContext } from "../../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const SocialLogin = () => {
+  const { googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const { googleSignIn } = useContext(AuthContext);
 
   const handleGoogleLogin = () => {
     googleSignIn().then((result) => {
@@ -31,11 +31,11 @@ const SocialLogin = () => {
       })
         .then((res) => res.json())
         .then(() => {
-          Swal.fire({
-            icon: "success",
-            title: "success.",
-            text: "You have successfully logged in!",
-          });
+          // Swal.fire({
+          //   icon: "success",
+          //   title: "success.",
+          //   text: "You have successfully logged in!",
+          // });
           navigate(from, { replace: true });
         });
     });

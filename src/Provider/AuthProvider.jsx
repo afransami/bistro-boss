@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const updateUserProfile = (name, photoUrl) => {
+  const updateUserProfile = (name, photoUrl) => {    
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photoUrl,
@@ -48,13 +48,13 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, currentUser => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("current user", currentUser);
+      console.log(currentUser);
       setLoading(false);
     });
     return () => {
-      return unsubscribe();
+      unsubscribe();
     };
   }, []);
 

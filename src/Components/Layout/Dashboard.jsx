@@ -18,6 +18,7 @@ import useCart from "../../Hooks/useCart";
 const Dashboard = () => {
   const [cart] = useCart();
   const isAdmin = true;
+
   return (
     <div className="drawer drawer-mobile">
       <Helmet>
@@ -43,7 +44,7 @@ const Dashboard = () => {
             <>
               <li>
                 <NavLink to="/dashboard/home" className="uppercase">
-                  <FaHome></FaHome> Admn Home
+                  <FaHome></FaHome> Admin Home
                 </NavLink>
               </li>
               <li>
@@ -86,7 +87,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/mycart" className="uppercase">
-                  <FaShoppingCart></FaShoppingCart> my cart
+                  <FaShoppingCart></FaShoppingCart> my cart {cart.length}
                 </NavLink>
               </li>
               <li>

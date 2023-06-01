@@ -122,7 +122,7 @@ const Login = () => {
                   </Link>
                 </p>
               </div>
-              <SocialLogin></SocialLogin>             
+          <SocialLogin></SocialLogin>
             </div>
           </form>
         </div>
